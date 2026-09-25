@@ -1,0 +1,15 @@
+{
+  "name": "agripulse-platform",
+  "version": "1.0.0",
+  "description": "AI-Driven Farm Recommendation, GIS Visualization & Environmental Monitoring Platform (FSD Project)",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
