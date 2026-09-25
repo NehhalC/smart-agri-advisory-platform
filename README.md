@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # smart-agri-advisory-platform
 =======
 # 🌾 AgriPulse AI — GIS Visualization & Smart Farm Advisory Platform
