@@ -219,7 +219,7 @@ export default function App() {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#f7f4ed', color: '#1c2826' }}>
       
       {/* Top Header Navbar */}
       <Navbar 
