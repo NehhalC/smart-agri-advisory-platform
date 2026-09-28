@@ -52,15 +52,15 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       {
         label: 'Soil Moisture (%)',
         data: [48, 47, 45, 43, 41, 40, simMoisture, simMoisture],
-        borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.15)',
+        borderColor: '#2b6cb0',
+        backgroundColor: 'rgba(43, 108, 176, 0.12)',
         fill: true,
         tension: 0.4
       },
       {
         label: 'Air Temp (°C)',
         data: [20, 23, 27, 30, 31, 29, 27, currentSensor.airTemperatureC],
-        borderColor: '#f59e0b',
+        borderColor: '#d4a373',
         backgroundColor: 'transparent',
         borderDash: [5, 5],
         tension: 0.4
@@ -72,12 +72,12 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans' } } },
-      tooltip: { backgroundColor: '#1e293b', titleColor: '#fff', bodyColor: '#cbd5e1' }
+      legend: { labels: { color: '#5c675d', font: { family: 'Plus Jakarta Sans' } } },
+      tooltip: { backgroundColor: '#ffffff', titleColor: '#1b4332', bodyColor: '#1c2826', borderColor: '#e2d7c5', borderWidth: 1 }
     },
     scales: {
-      x: { ticks: { color: '#64748b' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-      y: { ticks: { color: '#64748b' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      x: { ticks: { color: '#5c675d' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { ticks: { color: '#5c675d' }, grid: { color: 'rgba(0,0,0,0.06)' } }
     }
   };
 
@@ -88,7 +88,7 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       {
         label: 'Current Soil Nutrient (ppm)',
         data: [currentSensor.nitrogenPpm, currentSensor.phosphorusPpm, currentSensor.potassiumPpm],
-        backgroundColor: ['#10b981', '#38bdf8', '#a855f7'],
+        backgroundColor: ['#2d6a4f', '#2b6cb0', '#d4a373'],
         borderRadius: 8
       }
     ]
@@ -106,10 +106,10 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(6, 182, 212, 0.15)' }}>
+            <div style={{ padding: '6px', borderRadius: '8px', background: '#ebf8ff' }}>
               <Wifi size={22} color="var(--accent-cyan)" />
             </div>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 700 }}>IoT Environmental Telemetry Monitor</h2>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-heading)' }}>IoT Environmental Telemetry Monitor</h2>
           </div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
             Live telemetry feed from sensor node: <strong>{currentSensor.sensorNodeId || 'SNODE-101'}</strong> ({selectedField?.name || 'Selected Field'})
@@ -130,33 +130,33 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', marginBottom: '24px' }}>
         
         {/* Soil Moisture */}
-        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-cyan)' }}>
+        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-cyan)', background: '#ffffff' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '6px' }}>
             <span>Soil Moisture</span>
             <Droplets size={16} color="var(--accent-cyan)" />
           </div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-heading)' }}>
             {currentSensor.soilMoisturePercent}%
           </div>
-          <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', marginTop: '8px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '6px', background: '#e2d7c5', borderRadius: '3px', marginTop: '8px', overflow: 'hidden' }}>
             <div style={{ 
               width: `${currentSensor.soilMoisturePercent}%`, 
               height: '100%', 
-              background: currentSensor.soilMoisturePercent < 25 ? '#f43f5e' : 'var(--accent-cyan)' 
+              background: currentSensor.soilMoisturePercent < 25 ? '#c05621' : 'var(--accent-cyan)' 
             }}></div>
           </div>
-          <span style={{ fontSize: '0.72rem', color: currentSensor.soilMoisturePercent < 25 ? '#f43f5e' : '#34d399', marginTop: '4px', display: 'block' }}>
+          <span style={{ fontSize: '0.72rem', color: currentSensor.soilMoisturePercent < 25 ? '#c05621' : '#2d6a4f', marginTop: '4px', display: 'block' }}>
             {currentSensor.soilMoisturePercent < 25 ? '⚠️ Moisture Deficit' : '✓ Optimal Root Level'}
           </span>
         </div>
 
         {/* Ambient Air Temp */}
-        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-amber)' }}>
+        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-amber)', background: '#ffffff' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '6px' }}>
             <span>Air / Soil Temp</span>
-            <Thermometer size={16} color="var(--accent-amber)" />
+            <Thermometer size={16} color="var(--accent-amber-dark)" />
           </div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-heading)' }}>
             {currentSensor.airTemperatureC}°C
           </div>
           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px', display: 'block' }}>
@@ -165,12 +165,12 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
         </div>
 
         {/* Humidity */}
-        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid #3b82f6' }}>
+        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid #2b6cb0', background: '#ffffff' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '6px' }}>
             <span>Air Humidity</span>
-            <Wind size={16} color="#3b82f6" />
+            <Wind size={16} color="#2b6cb0" />
           </div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-heading)' }}>
             {currentSensor.airHumidityPercent}%
           </div>
           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px', display: 'block' }}>
@@ -179,15 +179,15 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
         </div>
 
         {/* Soil pH */}
-        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-emerald)' }}>
+        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-emerald)', background: '#ffffff' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '6px' }}>
             <span>Soil pH Level</span>
             <TestTube size={16} color="var(--accent-emerald)" />
           </div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-heading)' }}>
             {currentSensor.soilPh}
           </div>
-          <span style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '4px', display: 'block' }}>
+          <span style={{ fontSize: '0.75rem', color: '#2d6a4f', marginTop: '4px', display: 'block' }}>
             Slightly Acidic (Ideal)
           </span>
         </div>
@@ -198,8 +198,8 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px', marginBottom: '24px' }}>
         
         {/* Moisture & Temp Line Chart */}
-        <div className="glass-panel" style={{ padding: '18px', height: '280px' }}>
-          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '12px', color: '#fff' }}>
+        <div className="glass-panel" style={{ padding: '18px', height: '280px', background: '#ffffff' }}>
+          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '12px', color: 'var(--text-heading)' }}>
             Diurnal Moisture & Temperature Curve
           </h3>
           <div style={{ height: '210px' }}>
@@ -208,8 +208,8 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
         </div>
 
         {/* Soil NPK Nutrient Bar Chart */}
-        <div className="glass-panel" style={{ padding: '18px', height: '280px' }}>
-          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '12px', color: '#fff' }}>
+        <div className="glass-panel" style={{ padding: '18px', height: '280px', background: '#ffffff' }}>
+          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '12px', color: 'var(--text-heading)' }}>
             Soil N-P-K Mineral Balance (PPM)
           </h3>
           <div style={{ height: '210px' }}>
@@ -220,8 +220,8 @@ export default function TelemetryDashboard({ telemetryData, selectedField, onSim
       </div>
 
       {/* Telemetry Simulator Controls */}
-      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(0,0,0,0.25)', border: '1px border var(--border-color)' }}>
-        <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <div className="glass-panel" style={{ padding: '16px', background: '#f5ebe0', border: '1px solid var(--border-color)' }}>
+        <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-heading)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Sliders size={16} color="var(--accent-emerald)" /> Live Telemetry Stress Testing Simulator
         </h4>
         <form onSubmit={handleSimulateSubmit} style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>

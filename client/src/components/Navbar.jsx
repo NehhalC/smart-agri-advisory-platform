@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, Database, Cpu, CloudSun, MapPin, RefreshCw } from 'lucide-react';
+import { Sprout, Database, CloudSun, MapPin, RefreshCw } from 'lucide-react';
 
 export default function Navbar({ 
   selectedField, 
@@ -11,7 +11,7 @@ export default function Navbar({
   loading 
 }) {
   return (
-    <header className="glass-panel" style={{ borderRadius: 0, borderTop: 'none', borderLeft: 'none', borderRight: 'none', padding: '14px 28px', marginBottom: '24px' }}>
+    <header className="glass-panel" style={{ borderRadius: 0, borderTop: 'none', borderLeft: 'none', borderRight: 'none', padding: '14px 28px', marginBottom: '24px', background: '#ffffff' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         
         {/* Logo & Brand Name */}
@@ -20,16 +20,16 @@ export default function Navbar({
             width: '42px', 
             height: '42px', 
             borderRadius: '12px', 
-            background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+            background: 'linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 20px rgba(16, 185, 129, 0.4)'
+            boxShadow: '0 4px 14px rgba(45, 106, 79, 0.25)'
           }}>
             <Sprout size={26} color="#ffffff" />
           </div>
           <div>
-            <h1 style={{ fontSize: '1.35rem', fontWeight: 800, background: 'linear-gradient(90deg, #34d399, #38bdf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <h1 style={{ fontSize: '1.35rem', fontWeight: 800, background: 'linear-gradient(90deg, #1b4332, #2d6a4f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               AgriPulse AI
             </h1>
             <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -42,8 +42,8 @@ export default function Navbar({
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
           
           {/* Farm Field Selector */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.05)', padding: '6px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
-            <MapPin size={16} color="var(--accent-cyan)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#f5ebe0', padding: '6px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+            <MapPin size={16} color="var(--accent-emerald)" />
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Field:</span>
             <select 
               value={selectedField?.fieldId || ''} 
@@ -63,7 +63,7 @@ export default function Navbar({
               }}
             >
               {fields.map(f => (
-                <option key={f.fieldId} value={f.fieldId} style={{ background: '#12192c', color: '#fff' }}>
+                <option key={f.fieldId} value={f.fieldId} style={{ background: '#ffffff', color: '#1c2826' }}>
                   {f.name} ({f.cropType})
                 </option>
               ))}
@@ -72,10 +72,10 @@ export default function Navbar({
 
           {/* Weather Widget */}
           {weather && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.05)', padding: '6px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
-              <CloudSun size={18} color="var(--accent-amber)" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#f5ebe0', padding: '6px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+              <CloudSun size={18} color="var(--accent-amber-dark)" />
               <div style={{ fontSize: '0.85rem' }}>
-                <span style={{ fontWeight: 700, color: '#fff' }}>{weather.temperature}°C</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-heading)' }}>{weather.temperature}°C</span>
                 <span style={{ color: 'var(--text-muted)', marginLeft: '6px', fontSize: '0.78rem' }}>{weather.condition}</span>
               </div>
             </div>

@@ -248,9 +248,10 @@ export default function App() {
                 fontSize: '0.88rem',
                 fontWeight: 600,
                 borderRadius: 'var(--radius-sm)',
-                border: activeTab === tab.id ? '1px solid var(--accent-emerald)' : '1px solid var(--border-color)',
-                background: activeTab === tab.id ? 'linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(6,182,212,0.1) 100%)' : 'rgba(255,255,255,0.03)',
-                color: activeTab === tab.id ? '#ffffff' : 'var(--text-muted)',
+                border: activeTab === tab.id ? '1px solid #1b4332' : '1px solid var(--border-color)',
+                background: activeTab === tab.id ? 'linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%)' : '#ffffff',
+                color: activeTab === tab.id ? '#ffffff' : 'var(--text-main)',
+                boxShadow: activeTab === tab.id ? '0 4px 12px rgba(45,106,79,0.2)' : '0 2px 4px rgba(0,0,0,0.02)',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 whiteSpace: 'nowrap'
@@ -260,11 +261,11 @@ export default function App() {
               {tab.label}
               {tab.count > 0 && (
                 <span style={{ 
-                  background: '#f43f5e', 
+                  background: '#c05621', 
                   color: '#fff', 
                   fontSize: '0.7rem', 
                   fontWeight: 800, 
-                  padding: '2px 6px', 
+                  padding: '2px 7px', 
                   borderRadius: '10px' 
                 }}>
                   {tab.count}
@@ -327,7 +328,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--border-color)', padding: '16px 24px', textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-subtle)', background: 'rgba(0,0,0,0.3)' }}>
+      <footer style={{ borderTop: '1px solid var(--border-color)', padding: '18px 24px', textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-muted)', background: '#ede7dc' }}>
         AgriPulse AI & GIS Farm Advisory Platform • Full Stack Development (FSD) Project • React.js + Node.js + Express + MongoDB
       </footer>
 

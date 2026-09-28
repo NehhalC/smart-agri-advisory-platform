@@ -18,7 +18,7 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
     setActiveCropSample(sampleKey);
     setIsAnalyzing(true);
     
-    // Simulate AI Computer Vision inference delay (1.2s)
+    // Simulate AI Computer Vision inference delay (1.0s)
     setTimeout(async () => {
       const newScan = await onDiagnoseCrop(sampleKey);
       if (newScan) setSelectedScan(newScan);
@@ -49,10 +49,10 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(244, 63, 94, 0.15)' }}>
+            <div style={{ padding: '6px', borderRadius: '8px', background: '#fff5f5' }}>
               <Camera size={22} color="var(--accent-rose)" />
             </div>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 700 }}>AI Crop Health & Pathology Scan Diagnostics</h2>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-heading)' }}>AI Crop Health & Pathology Scan Diagnostics</h2>
           </div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
             Deep learning visual recognition engine for pest detection, foliar diseases & deficiency analysis
@@ -76,13 +76,13 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
             textAlign: 'center', 
             border: '2px dashed var(--border-color)', 
             marginBottom: '16px',
-            background: 'rgba(0,0,0,0.2)'
+            background: '#faf7f2'
           }}>
             <div style={{ 
               width: '54px', 
               height: '54px', 
               borderRadius: '50%', 
-              background: 'rgba(16, 185, 129, 0.1)', 
+              background: '#e8f5e9', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
@@ -90,7 +90,7 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
             }}>
               <Upload size={24} color="var(--accent-emerald)" />
             </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-heading)', marginBottom: '4px' }}>
               Upload Crop Image / Leaf Scan
             </h4>
             <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '14px' }}>
@@ -108,7 +108,7 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
           </div>
 
           {/* Preset Sample Selector Library */}
-          <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>
+          <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-heading)', marginBottom: '10px' }}>
             🧪 Pre-analyzed Field Samples Library
           </h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -124,11 +124,11 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   border: activeCropSample === preset.key ? '1px solid var(--accent-emerald)' : '1px solid var(--border-color)',
-                  background: activeCropSample === preset.key ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg-card)'
+                  background: activeCropSample === preset.key ? '#e8f5e9' : '#ffffff'
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>{preset.name}</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-heading)' }}>{preset.name}</div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{preset.status}</div>
                 </div>
                 <Leaf size={16} color="var(--accent-emerald)" />
@@ -144,7 +144,7 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
           {isAnalyzing ? (
             <div style={{ textAlign: 'center', padding: '60px 20px' }}>
               <div style={{ width: '48px', height: '48px', border: '4px solid var(--accent-emerald)', borderTopColor: 'transparent', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 1s linear infinite' }}></div>
-              <h3 style={{ fontSize: '1.1rem', color: '#fff', fontWeight: 700 }}>Processing Neural Feature Maps</h3>
+              <h3 style={{ fontSize: '1.1rem', color: 'var(--text-heading)', fontWeight: 700 }}>Processing Neural Feature Maps</h3>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Executing convolutional disease classification model...</p>
             </div>
           ) : (
@@ -163,14 +163,14 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
                   left: '30%', 
                   width: '35%', 
                   height: '45%', 
-                  border: '2px dashed #f43f5e', 
+                  border: '2px dashed #c05621', 
                   borderRadius: '6px',
-                  boxShadow: '0 0 15px rgba(244,63,94,0.6)',
+                  boxShadow: '0 0 15px rgba(192,86,33,0.3)',
                   display: 'flex',
                   alignItems: 'flex-start',
                   padding: '4px'
                 }}>
-                  <span style={{ background: '#f43f5e', color: '#fff', fontSize: '0.65rem', fontWeight: 700, padding: '2px 4px', borderRadius: '2px' }}>
+                  <span style={{ background: '#c05621', color: '#fff', fontSize: '0.65rem', fontWeight: 700, padding: '2px 4px', borderRadius: '2px' }}>
                     Pathogen Identified ({current.confidenceScore}%)
                   </span>
                 </div>
@@ -180,7 +180,7 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                 <div>
                   <span style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: 600 }}>CROP SCAN RESULT</span>
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff' }}>{current.diagnosis}</h3>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-heading)' }}>{current.diagnosis}</h3>
                 </div>
                 <span className={`badge ${current.healthStatus === 'Healthy' ? 'badge-optimal' : current.healthStatus === 'Warning' ? 'badge-warning' : 'badge-critical'}`}>
                   {current.healthStatus}
@@ -191,16 +191,16 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
               <div style={{ marginBottom: '14px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '4px' }}>
                   <span>Model Confidence Score:</span>
-                  <strong style={{ color: '#34d399' }}>{current.confidenceScore}%</strong>
+                  <strong style={{ color: 'var(--accent-emerald)' }}>{current.confidenceScore}%</strong>
                 </div>
-                <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '6px', background: '#e2d7c5', borderRadius: '3px', overflow: 'hidden' }}>
                   <div style={{ width: `${current.confidenceScore}%`, height: '100%', background: 'var(--accent-emerald)' }}></div>
                 </div>
               </div>
 
               {/* Symptoms List */}
               <div style={{ marginBottom: '14px' }}>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Detected Symptoms:</h4>
+                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-heading)', marginBottom: '6px' }}>Detected Symptoms:</h4>
                 <ul style={{ paddingLeft: '18px', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
                   {current.symptoms?.map((s, idx) => (
                     <li key={idx} style={{ marginBottom: '3px' }}>{s}</li>
@@ -209,19 +209,19 @@ export default function CropHealthDiagnostics({ cropScans, onDiagnoseCrop }) {
               </div>
 
               {/* Treatment Protocols */}
-              <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
-                <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Bug size={16} color="var(--accent-amber)" /> AI Treatment & Agronomist Remedy Plan
+              <div style={{ background: '#fefae0', padding: '14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+                <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-heading)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Bug size={16} color="var(--accent-amber-dark)" /> AI Treatment & Agronomist Remedy Plan
                 </h4>
 
                 {current.organicRemedy && (
-                  <div style={{ fontSize: '0.8rem', color: '#cbd5e1', marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-main)', marginBottom: '6px' }}>
                     🌿 <strong>Organic / Bio-remedy:</strong> {current.organicRemedy}
                   </div>
                 )}
 
                 {current.chemicalRemedy && (
-                  <div style={{ fontSize: '0.8rem', color: '#cbd5e1', marginBottom: '6px' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-main)', marginBottom: '6px' }}>
                     🧪 <strong>Chemical Application:</strong> {current.chemicalRemedy}
                   </div>
                 )}
