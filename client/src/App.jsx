@@ -8,6 +8,8 @@ import MarketTrends from './components/MarketTrends';
 import IrrigationScheduler from './components/IrrigationScheduler';
 import { Layers, Bot, Wifi, Camera, TrendingUp, Power, AlertTriangle } from 'lucide-react';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('gis'); // 'gis', 'ai', 'telemetry', 'health', 'market', 'irrigation'
   const [fields, setFields] = useState([]);
@@ -26,12 +28,12 @@ export default function App() {
     setLoading(true);
     try {
       // Check API Health
-      const healthRes = await fetch('/api/health');
+      const healthRes = await fetch(`${API_BASE}/api/health`);
       const healthJson = await healthRes.json();
       setIsMongoConnected(healthJson.mongoDBConnected);
 
       // Fetch GIS Fields
-      const gisRes = await fetch('/api/gis/fields');
+      const gisRes = await fetch(`${API_BASE}/api/gis/fields`);
       const gisJson = await gisRes.json();
       if (gisJson.fields) {
         setFields(gisJson.fields);
@@ -39,27 +41,27 @@ export default function App() {
       }
 
       // Fetch Telemetry
-      const teleRes = await fetch('/api/telemetry');
+      const teleRes = await fetch(`${API_BASE}/api/telemetry`);
       const teleJson = await teleRes.json();
       if (teleJson.telemetry) setTelemetryData(teleJson.telemetry);
 
       // Fetch AI Recommendations
-      const recRes = await fetch('/api/recommendations');
+      const recRes = await fetch(`${API_BASE}/api/recommendations`);
       const recJson = await recRes.json();
       if (recJson.recommendations) setRecommendations(recJson.recommendations);
 
       // Fetch Crop Health Scans
-      const scanRes = await fetch('/api/crop-health/scans');
+      const scanRes = await fetch(`${API_BASE}/api/crop-health/scans`);
       const scanJson = await scanRes.json();
       if (scanJson.scans) setCropScans(scanJson.scans);
 
       // Fetch Market Prices
-      const mktRes = await fetch('/api/market/prices');
+      const mktRes = await fetch(`${API_BASE}/api/market/prices`);
       const mktJson = await mktRes.json();
       if (mktJson.prices) setMarketPrices(mktJson.prices);
 
       // Fetch Irrigation Status
-      const irrRes = await fetch('/api/irrigation/schedule');
+      const irrRes = await fetch(`${API_BASE}/api/irrigation/schedule`);
       const irrJson = await irrRes.json();
       if (irrJson.currentStatus) {
         setIrrigationData(irrJson);
@@ -79,7 +81,7 @@ export default function App() {
   // Update Recommendation Status API call
   const handleRecommendationStatusUpdate = async (recId, status) => {
     try {
-      const res = await fetch(`/api/recommendations/${recId}/status`, {
+      const res = await fetch(`${API_BASE}/api/recommendations/${recId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
@@ -97,7 +99,7 @@ export default function App() {
   // Generate Custom AI Recommendation API call
   const handleGenerateCustomRecommendation = async (formData) => {
     try {
-      const res = await fetch('/api/recommendations/generate', {
+      const res = await fetch(`${API_BASE}/api/recommendations/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -118,7 +120,7 @@ export default function App() {
   // Telemetry Simulation API call
   const handleSimulateTelemetry = async (sensorNodeId, soilMoisturePercent) => {
     try {
-      const res = await fetch('/api/telemetry/simulate', {
+      const res = await fetch(`${API_BASE}/api/telemetry/simulate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sensorNodeId, soilMoisturePercent })
@@ -135,7 +137,7 @@ export default function App() {
   // Crop Disease Diagnosis API call
   const handleDiagnoseCrop = async (sampleType) => {
     try {
-      const res = await fetch('/api/crop-health/diagnose', {
+      const res = await fetch(`${API_BASE}/api/crop-health/diagnose`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -158,7 +160,7 @@ export default function App() {
   // Profit Calculator API call
   const handleCalculateProfit = async (inputs) => {
     try {
-      const res = await fetch('/api/market/calculate-profit', {
+      const res = await fetch(`${API_BASE}/api/market/calculate-profit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputs)
@@ -173,7 +175,7 @@ export default function App() {
   // Toggle Pump API call
   const handleTogglePump = async (action, mode) => {
     try {
-      const res = await fetch('/api/irrigation/toggle-pump', {
+      const res = await fetch(`${API_BASE}/api/irrigation/toggle-pump`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, mode })
@@ -194,7 +196,7 @@ export default function App() {
   // Create new GIS Field API call
   const handleCreateField = async (newFieldData) => {
     try {
-      const res = await fetch('/api/gis/fields', {
+      const res = await fetch(`${API_BASE}/api/gis/fields`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newFieldData)
