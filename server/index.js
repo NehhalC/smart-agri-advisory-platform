@@ -23,6 +23,24 @@ app.use('/api/crop-health', require('./routes/cropScanRoutes'));
 app.use('/api/market', require('./routes/marketRoutes'));
 app.use('/api/irrigation', require('./routes/irrigationRoutes'));
 
+// Root API Landing Endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ONLINE',
+    service: 'AgriPulse AI & GIS Platform Backend API',
+    message: 'Backend server is running successfully! Access the web frontend on Vercel.',
+    healthCheck: '/api/health',
+    endpoints: [
+      '/api/gis/fields',
+      '/api/telemetry',
+      '/api/recommendations',
+      '/api/crop-health/scans',
+      '/api/market/prices',
+      '/api/irrigation/schedule'
+    ]
+  });
+});
+
 // System Health Endpoint
 app.get('/api/health', (req, res) => {
   res.json({
